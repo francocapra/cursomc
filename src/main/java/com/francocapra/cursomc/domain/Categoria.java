@@ -2,9 +2,17 @@ package com.francocapra.cursomc.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Categoria implements Serializable{ //Objeto delas poderam ser convertidos em uma sequencia de bytes, ou seja, para que os obejtos possam ser gravados em arquivos, pra trafegar em rede 		
 	private static final long serialVersionUID = 1L;
-
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY) //DEfinindo a estrategia de geração automatica dos ID, dependendo do banco tem q ser <> IDENTITY
 	private Integer id;
 	private String nome;
 	
