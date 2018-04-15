@@ -1,0 +1,29 @@
+[33mcommit 30dc6e43c5719f070e8b811cbd5088b8c9bc9a91[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Franco Capra <franco.capra@outlook.com>
+Date:   Fri Apr 13 23:39:16 2018 -0300
+
+    Criado Categoria - Repository e Service
+
+[33mcommit 1297654cb725c54e7badda2da1e474003c36e32a[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Franco Capra <franco.capra@outlook.com>
+Date:   Fri Apr 13 22:45:35 2018 -0300
+
+    Base de dados H2 - criação automatica de base de dados
+
+[33mcommit 885829df26230bb9bd75957f937e04779a028369[m
+Author: Franco Capra <franco.capra@outlook.com>
+Date:   Fri Apr 13 22:02:32 2018 -0300
+
+    Testando a primeira classe de dominio - Categoria
+
+[33mcommit bd52de8ad0c936fac26aa987766aa3060ac50485[m
+Author: Franco Capra <franco.capra@outlook.com>
+Date:   Fri Apr 13 21:15:18 2018 -0300
+
+    Rest Criado
+
+[33mcommit 2a96af803844a655dca0b8274208d9409b668d6f[m
+Author: Franco Capra <franco.capra@outlook.com>
+Date:   Fri Apr 13 20:00:28 2018 -0300
+
+    Projeto criado
