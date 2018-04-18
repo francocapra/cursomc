@@ -1,5 +1,6 @@
 package com.francocapra.cursomc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.francocapra.cursomc.domain.Categoria;
+import com.francocapra.cursomc.domain.Cidade;
+import com.francocapra.cursomc.domain.Estado;
 import com.francocapra.cursomc.domain.Produto;
 import com.francocapra.cursomc.repositories.CategoriaRepository;
+import com.francocapra.cursomc.repositories.CidadeRepository;
+import com.francocapra.cursomc.repositories.EstadoRepository;
 import com.francocapra.cursomc.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -21,13 +26,19 @@ public class CursomcApplication implements CommandLineRunner{
 	@Autowired
 	private ProdutoRepository produtoRepository;
 	
+	@Autowired
+	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private EstadoRepository estadoRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
+		
 		Categoria cat1 =  new Categoria(null, "Informática");
 		Categoria cat2 =  new Categoria(null, "Escritório");
 		
@@ -41,10 +52,19 @@ public class CursomcApplication implements CommandLineRunner{
 		p1.getCategorias().addAll(Arrays.asList(cat1));
 		p2.getCategorias().addAll(Arrays.asList(cat1,cat2));
 		p3.getCategorias().addAll(Arrays.asList(cat1));
-			
+		
+		Estado est1 = new Estado(null, "Rio Grande do Sul");
+		
+		Cidade c1 = new Cidade(null, "Porto Alegre", est1 );
+		
+		est1.getCidades().addAll(Arrays.asList(c1));
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
+		cidadeRepository.saveAll(Arrays.asList(c1));
+		estadoRepository.saveAll(Arrays.asList(est1));
+		
+		
 		
 	}
 }
