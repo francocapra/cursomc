@@ -2,7 +2,9 @@ package com.francocapra.cursomc.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -24,13 +27,17 @@ public class Produto implements Serializable{
 	private String nome;
 	private Double preco;
 	
-	@JsonBackReference //Faz o seguinte: do outrol lado da associação já foram buscados os objetos, então agora eu não busco mais! Vou omitir a Lista de Categorias para cada produto!
+	//Faz o seguinte: do outrol lado da associação já foram buscados os objetos, então agora eu não busco mais! Vou omitir a Lista de Categorias para cada produto!
+	@JsonBackReference 
 	//Associações: *..*(Muitos para Muitos, N para N) to Class Produto, no BD precisa um tabela auxiliar para relacionar 
 	@ManyToMany
-	@JoinTable( name = "PRODUTO_CATEGORIA",
-				joinColumns = @JoinColumn( name = "produto_id"),
-				inverseJoinColumns = @JoinColumn( name = "categoria_id") )
+	@JoinTable(name="PRODUTO_CATEGORIA",
+			joinColumns=@JoinColumn(name="produto_id"),
+			inverseJoinColumns=@JoinColumn(name="categoria_id"))
 	private List<Categoria> categorias = new ArrayList<>();
+	
+	@OneToMany(mappedBy="id.produto")
+	private Set<ItemPedido> itens = new HashSet<>();
 	
 	public Produto() {
 		super();
@@ -42,7 +49,15 @@ public class Produto implements Serializable{
 		this.nome = nome;
 		this.preco = preco;
 	}
-
+	
+	public List<Pedido> getPedidos(){
+		List<Pedido> lista = new ArrayList<>();
+		for (ItemPedido x : itens) {
+			lista.add(x.getPedido());
+		}
+		return lista;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -75,6 +90,14 @@ public class Produto implements Serializable{
 		this.categorias = categorias;
 	}
 	
+
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedido> itens) {
+		this.itens = itens;
+	}
 
 	@Override
 	public int hashCode() {
