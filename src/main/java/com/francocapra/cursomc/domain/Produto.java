@@ -15,7 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -29,7 +28,7 @@ public class Produto implements Serializable{
 	private Double preco;
 	
 	//Faz o seguinte: do outrol lado da associação já foram buscados os objetos, então agora eu não busco mais! Vou omitir a Lista de Categorias para cada produto!
-	@JsonBackReference 
+	@JsonIgnore
 	//Associações: *..*(Muitos para Muitos, N para N) to Class Produto, no BD precisa um tabela auxiliar para relacionar 
 	@ManyToMany
 	@JoinTable(name="PRODUTO_CATEGORIA",

@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class Categoria implements Serializable{ //Objeto delas poderam ser convertidos em uma sequencia de bytes, ou seja, para que os obejtos possam ser gravados em arquivos, pra trafegar em rede 		
 	private static final long serialVersionUID = 1L;
@@ -21,8 +19,7 @@ public class Categoria implements Serializable{ //Objeto delas poderam ser conve
 	private Integer id;
 	private String nome;
 	
-	//Referencia administrada pelo JSON: faz isso no lado que voce quer q venha os objetos associados!
-	@JsonManagedReference
+	//Referencia administrada pelo JSON: faz isso no lado que voce quer q venha os objetos associados!	
 	//Associações: *..*(Muitos para Muitos, N para N) to Class Produto, no BD precisa um tabela auxiliar para relacionar 
 	@ManyToMany(mappedBy = "categorias")
 	private List<Produto> produtos = new ArrayList<>();
